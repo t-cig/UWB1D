@@ -5,9 +5,11 @@ This is the 1D data and codebase for the ICCV 2023 paper "Passive Ultra-Wideband
 ### Introduction to the repository
 * The current repository represents a real, captured experiment, where an unsynchronized single-photon avalanche diode (SPAD) passively records indirect light coming from multiple sources operating asynchronously from each other (unsynchronized picosecond lasers, projectors, etc.) 
 * The final output of this code pipeline is the center four figures in Figure 1 of the [paper](https://www.dgp.toronto.edu/projects/ultra-wideband/static/docs/paper.pdf). The actual scene can be found in Figure 5 (row 2, middle). 
-* Data captured by the SPAD is current stored in the MatLab file `experiment1/scan_posX001_posY001.mat`. 
+* Data captured by the SPAD is current stored in the MatLab file `experiment1/scan_posX001_posY001.mat`.
+
 <br>
 </br>
+
 ### Running the 1D Ultra-Wideband Pipeline
 #### Before running
 Before executing the overall pipeline, make sure that you have gone through the `constants.py` file and filled in everything needed, in particular:
