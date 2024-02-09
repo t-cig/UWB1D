@@ -39,10 +39,11 @@ Default hardware for running the pipeline is `torch.device('cuda:0')` with cuda 
 
 When using this code in your projects, please Cite:
 
-```
+```bibtex
 @inproceedings{wei2023ultrawideband,
   author    = {Wei, Mian and Nousias, Sotiris and Gulve, Rahul and Lindell, David B and Kutulakos, Kiriakos N},
   title     = {Passive Ultra-Wideband Single-Photon Imaging},
   booktitle = {Proc. ICCV},
   year      = {2023},
 }
+```
