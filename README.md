@@ -37,7 +37,7 @@ Default hardware for running the pipeline is `torch.device('cuda:0')` with cuda 
 2. If you have all probed files in MatLab format ready and would only like to run the frequency thresholding and flux reconstruction parts of the pipeline, you can add the `--probed` flag when running `python3 uwb.py`. This will only run the frequency thresholding and flux reconstruction parts of the pipeline.
 3. Creating and saving all probing files (default) will take several (~20-30) GB of storage. To run the pipeline in a more memory-efficient way, you can add in the `--noprobestore` flag when running `python3 uwb.py`. With this flag, no probing intermediate files will be saved. Note that since the pipeline execution takes time, with this flag, you need to wait for the overall pipeline to re-run if the session disconnects.
 
-When using this code in your projects, please Cite:
+When using this code in your projects, please cite:
 
 ```bibtex
 @inproceedings{wei2023ultrawideband,
