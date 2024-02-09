@@ -35,4 +35,12 @@ Default hardware for running the pipeline is `torch.device('cuda:0')` with cuda 
 #### Several options with running the pipeline
 1. Without the `--conda` flag, the pipeline assumes that the desired conda environment is activated or that the pipeline is run directly through terminal without a conda environment. The pipeline will still check whether all required packages are installed and will install the missing ones. If you would like to create/activate the conda environment UWB on Mac/Linux shell, you can add this flag. 
 2. If you have all probed files in MatLab format ready and would only like to run the frequency thresholding and flux reconstruction parts of the pipeline, you can add the `--probed` flag when running `python3 uwb.py`. This will only run the frequency thresholding and flux reconstruction parts of the pipeline.
-3. Creating and saving all probing files (default) will take several (~20-30) GB of storage. To run the pipeline in a more memory-efficient way, you can add in the `--noprobestore` flag when running `python3 uwb.py`. With this flag, no probing intermediate files will be saved. Note that since the pipeline execution takes time, with this flag, you need to wait for the overall pipeline to re-run if the session disconnects. 
+3. Creating and saving all probing files (default) will take several (~20-30) GB of storage. To run the pipeline in a more memory-efficient way, you can add in the `--noprobestore` flag when running `python3 uwb.py`. With this flag, no probing intermediate files will be saved. Note that since the pipeline execution takes time, with this flag, you need to wait for the overall pipeline to re-run if the session disconnects.
+
+When using this code in your projects, please Cite:
+@inproceedings{wei2023ultrawideband,
+  author    = {Wei, Mian and Nousias, Sotiris and Gulve, Rahul and Lindell, David B and Kutulakos, Kiriakos N},
+  title     = {Passive Ultra-Wideband Single-Photon Imaging},
+  booktitle = {Proc. ICCV},
+  year      = {2023},
+}
