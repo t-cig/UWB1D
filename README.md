@@ -38,6 +38,8 @@ Default hardware for running the pipeline is `torch.device('cuda:0')` with cuda 
 3. Creating and saving all probing files (default) will take several (~20-30) GB of storage. To run the pipeline in a more memory-efficient way, you can add in the `--noprobestore` flag when running `python3 uwb.py`. With this flag, no probing intermediate files will be saved. Note that since the pipeline execution takes time, with this flag, you need to wait for the overall pipeline to re-run if the session disconnects.
 
 When using this code in your projects, please Cite:
+
+```
 @inproceedings{wei2023ultrawideband,
   author    = {Wei, Mian and Nousias, Sotiris and Gulve, Rahul and Lindell, David B and Kutulakos, Kiriakos N},
   title     = {Passive Ultra-Wideband Single-Photon Imaging},
