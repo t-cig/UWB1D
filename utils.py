@@ -71,7 +71,7 @@ def compute_bound_torch(frequencies, stamps, num_files, probe_time):
     """
     if(probe_time == 0.1):
         num_freqs_thisfile = torch.sum(frequencies > 3e6).item()
-        num_freqs_otherfiles = len(frequencies) * num_files
+        num_freqs_otherfiles = len(frequencies)
         num_freqs = (num_files - 1) * num_freqs_otherfiles + num_freqs_thisfile
         percentage_in = 1 - 1/num_freqs
         bound_val = compute_amplitude_bound(percentage_in, stamps.size/stamps[-1]/probe_time)
@@ -95,7 +95,7 @@ def compute_bound_np(frequencies, stamps, num_files, probe_time):
     """
     if(probe_time == 0.1):
         num_freqs_thisfile = np.sum(frequencies > 3e6)
-        num_freqs_otherfiles = len(frequencies) * num_files
+        num_freqs_otherfiles = len(frequencies)
         num_freqs = (num_files - 1) * num_freqs_otherfiles + num_freqs_thisfile
         percentage_in = 1 - 1/num_freqs
         bound_val = compute_amplitude_bound(percentage_in, stamps.size/stamps[-1]/probe_time)
