@@ -94,6 +94,7 @@ def probe(probe_times: List, max_sizes: List, intervals: List, stepsizes: List, 
     p = freqs_np.argsort()
 
     mdic = {'freqs' : freqs_np[p], 'amps': amps_np[p], 'phs' : phs_np[p]}
+    os.makedirs(RECONSTRUCTION_FOLDER, exist_ok=True)
     sio.savemat(os.path.join(RECONSTRUCTION_FOLDER, 'swept_freqs_ab.mat'), mdic)
     
 
