@@ -41,6 +41,8 @@ def probe(probe_times: List, max_sizes: List, intervals: List, stepsizes: List, 
                 stepsize = stepsizes[i]
                 if curMax == 0:
                     minFreq = 0
+                elif maxFreq == 2e9:
+                    minFreq = 1e9 + stepsize
                 else:
                     minFreq = curMax*max_sizes[i] + stepsize
 
