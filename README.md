@@ -14,7 +14,7 @@ This is the 1D data and codebase for the ICCV 2023 paper "Passive Ultra-Wideband
 #### Running the pipeline with anaconda3
 If you are running the codebase on Windows command line, please skip this section and proceed directly to the section "Running the pipeline directly from terminal". 
 
-The default setting of the pipeline assumes that cuda is enabled, and has version 12.*. If you would like to run it on cpu, proceed directly to "Hardware requirement for the pipeline" section. If you cuda version is lower, change the line 27 in `init.bash` to install correct cuda-enabled version of torch. 
+The default setting of the pipeline assumes that cuda is enabled, and has version 12.*. If you would like to run it on cpu, proceed directly to "Hardware requirement for the pipeline" section. If your cuda version is lower, change the line 27 in `init.bash` to install correct cuda-enabled version of torch. 
 
 Then, the begin-to-end pipeline can be simply executed with `python3 uwb.py --conda`.  Runnning this will automatically create a new anaconda3 environment called `UWB`, activate this environment, install all required packages in this environment and then execute the pipeline.
 
