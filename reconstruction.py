@@ -31,6 +31,10 @@ def reconstruction(exposures, names):
         # Reconstruct the rate function based on function reconstruct_rate_function_torch
         rate_fn = reconstruct_rate_function_torch(times, max_freq, frequencies_torch, amps_torch, phs_torch)
         
+        # For the finest timescale, we realized that we accidentally clipped at 2*DC photons/second for the paper, so keeping this in purely for reproducibility, but it should be removed
+        if i == len(exposures) - 1:
+            rate_fn[rate_fn < 2*amps_torch[0]] = 2*amps_torch[0]
+        
         # Convert back the timestamps, and rates function into numpy formats, for plotting
         times_np = times.cpu().numpy()
         rate_np = rate_fn.cpu().numpy()
