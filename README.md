@@ -32,6 +32,8 @@ Default hardware for running the pipeline is `torch.device('cuda:0')` with cuda 
 3. Creating and saving all probing files (default) will take several (~20-30GB) of storage. To run the pipeline in a more memory-efficient way, you can add in the `--noprobestore` flag when running `python3 uwb.py`. With this flag, no probing intermediate files will be saved. Note that since the pipeline execution takes time, with this flag, you need to wait for the overall pipeline to re-run if the session disconnects.
 4. By default, all outputs of flux reconstruction will be stored in the folder `figures` inside current directory. However, you can also change the `RECONSTRUCTION_FOLDER` inside the `constants.py` file. To probe data files other than the data file provided by us in this repo, you can also change `EXPERIMENT, PROBE_FILE, DATA_NAME` in `constants.py`. Please make sure that `PROBE_FILE` is contained in the `PROBE_FOLDER/EXPERIMENT` directory. 
 
+We thank [Howard Xiao](https://xiaohoward.github.io/) and Kevin Wang for their help in releasing this codebase. 
+
 When using this code in your projects, please cite:
 
 ```bibtex
