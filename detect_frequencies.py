@@ -81,5 +81,28 @@ def detect_frequency(num_files: int):
     mdic = {'freqs' : freqs_np, 'amps': amps_np, 'phs' : phs_np}
     sio.savemat(os.path.join(RECONSTRUCTION_FOLDER, 'swept_freqs_ab.mat'), mdic)
 
+    ## We will also store the frequencies for the entire 0.1s probe only
+    new_probed_lims = np.arange(1, NUM_FILES_TOTAL, 1) * 400e6
+    #Init arrays to append data to.
+    freqs_ab_new = []
+    amps_ab_new = []
+    phs_ab_new = []
+    for fNo in tqdm.tqdm(range(len(new_probed_lims))):
+        f_prob = new_probed_lims[fNo]
+        filename = f'torch_{time_total}sec_{f_prob/1e6}MHz_{LOW_STEPSIZE}.mat'
+        params = sio.loadmat(os.path.join(PROBE_FOLDER, EXPERIMENT, filename))
+        amps = np.array(params['amps'].flatten())
+        phs = np.array(params['phs'].flatten())
+        frequencies = np.array(params['freqs'][0])
+        freqs_ab_new.append(frequencies[amps>bound_val])
+        amps_ab_new.append(amps[amps>bound_val])
+        phs_ab_new.append(phs[amps > bound_val])
+    #Join all the data into one numpy array
+    freqs_np_new = np.hstack(freqs_ab_new)
+    amps_np_new = np.hstack(amps_ab_new)
+    phs_np_new = np.hstack(phs_ab_new)
+
+    mdic_new = {'freqs' : freqs_np_new, 'amps': amps_np_new, 'phs' : phs_np_new}
+    sio.savemat(os.path.join(RECONSTRUCTION_FOLDER, 'swept_freqs_ab_0.1s.mat'), mdic_new)
 if __name__ == '__main__':
     detect_frequency(25)

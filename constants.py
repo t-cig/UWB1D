@@ -35,6 +35,7 @@ PROBE_FILE = 'scan_posX001_posY001.mat'
 ## Key to find desired data
 DATA_NAME = 'data_2'
 RECONSTRUCTION_FILE = 'swept_freqs_ab.mat'
+RECONSTRUCTION_FILE2 = 'swept_freqs_ab_0.1s.mat'
 # Freqs, amps, phs data variables (keys) that will be stored in RECONSTRUCTION_FILE
 FREQS_NAME = 'freqs'
 AMPS_NAME = 'amps'

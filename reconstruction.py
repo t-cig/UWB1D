@@ -15,9 +15,12 @@ def reconstruction(exposures, names):
     name_index = 0
     # Load the MatLab data file, extract frequencies, amplitudes and phase shifts data, then change them
     # into torch tensor formats. 
-    amps_torch, frequencies_torch, phs_torch = reconstruction_init(RECONSTRUCTION_FILE)
-
     for i in range(len(exposures)):
+        if i == 3:
+            amps_torch, frequencies_torch, phs_torch = reconstruction_init(RECONSTRUCTION_FILE2)
+        else:
+            amps_torch, frequencies_torch, phs_torch = reconstruction_init(RECONSTRUCTION_FILE)
+        
         # Get everything need for time, including time unit, timescale, start_time, end_time and the
         # uniformly sampled NUM_SAMPLES number of timestamps. 
         unit_time, time_scale, start_time, end_time, times = reconstruction_time(exposures[i], i==len(exposures)-1)
@@ -30,10 +33,6 @@ def reconstruction(exposures, names):
 
         # Reconstruct the rate function based on function reconstruct_rate_function_torch
         rate_fn = reconstruct_rate_function_torch(times, max_freq, frequencies_torch, amps_torch, phs_torch)
-        
-        # For the finest timescale, we realized that we accidentally clipped at 2*DC photons/second for the paper, so keeping this in purely for reproducibility, but it should be removed
-        if i == len(exposures) - 1:
-            rate_fn[rate_fn < 2*amps_torch[0]] = 2*amps_torch[0]
         
         # Convert back the timestamps, and rates function into numpy formats, for plotting
         times_np = times.cpu().numpy()
