@@ -28,7 +28,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--conda', action='store_true', help='Enable Conda flag')
     parser.add_argument('--probed', action='store_true', help='Skip Probing Step')
-    parser.add_argument('--noprobestore', action='store_true', help='Skip Probing Storage')
+    parser.add_argument('--probestore', action='store_true', help='Skip Probing Storage')
     args = parser.parse_args()
 
     ## Whether or not to create a brand new anaconda environment for running the pipeline. Set CONDA=True 
@@ -41,10 +41,10 @@ if __name__ == '__main__':
     ## Whether or not to create and store intermediate probing files during the pipeline. Setting 
     # STORE_PROBE=False will significantly reduce the memory cost of the pipeline, but when 
     # the pipeline is interupted, it is harder to recover. 
-    if args.noprobestore:
-        STORE_PROBE = False
-    else:
+    if args.probestore:
         STORE_PROBE = True
+    else:
+        STORE_PROBE = False
     
     if CONDA:
     ## Create conda environment named UWB, activate the environment, and install all requirements for the pipeline
