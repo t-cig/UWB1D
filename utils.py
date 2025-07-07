@@ -43,19 +43,17 @@ def compute_coefficients_sweep_torch(time_total, freq, stamps, device, verbose=T
         amplitudes: 1D tensor
         phases: 1D tensor
     """
-    y = torch.zeros_like(freq.reshape(-1, 1), dtype=torch.cdouble, device=device)
-    if verbose:
-        for stp in tqdm.tqdm(stamps):
-            tmp = 1/time_total * torch.exp(-torch.tensor(2j, device=device, dtype=torch.cdouble) * torch.pi * freq.reshape(-1, 1) * stp)
-            y += tmp
-        amplitudes = torch.abs(y) * 2
-        phases = torch.atan2(torch.imag(y), torch.real(y))
-    else:
-        for stp in stamps:
-            tmp = 1/time_total * torch.exp(-torch.tensor(2j, device=device) * torch.pi * freq.reshape(-1, 1) * stp)
-            y += tmp
-        amplitudes = torch.abs(y) * 2
-        phases = torch.atan2(torch.imag(y), torch.real(y))
+    y_real = torch.zeros_like(freq.reshape(-1, 1), dtype=torch.float64, device=device)
+    y_imag = torch.zeros_like(freq.reshape(-1, 1), dtype=torch.float64, device=device)
+    m2pi_freq = -2 * torch.pi * freq.reshape(-1, 1)
+    for stp in tqdm.tqdm(stamps, disable=not verbose):
+        m2pi_freq_stp = m2pi_freq * stp
+        y_real += torch.cos(m2pi_freq_stp)
+        y_imag += torch.sin(m2pi_freq_stp)
+    y_real /= time_total
+    y_imag /= time_total
+    amplitudes = torch.sqrt(y_real**2 + y_imag**2) * 2
+    phases = torch.atan2(y_imag, y_real)
     amplitudes[0] /= 2
     return amplitudes, phases
 
